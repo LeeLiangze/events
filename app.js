@@ -51,9 +51,7 @@ app.use(function (req, res, next) {
         return;
     }
     else if (is_login(req)) {
-        console.log("@@@@@@@@@@@@@@",req.url);
         if (req.url.indexOf("register") != -1)  {
-            console.log("$$$$$$$$$$$", req.method);
             if (req.method != 'POST') {
                 res.render("register", {msg: ''});
             }

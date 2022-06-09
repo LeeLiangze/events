@@ -6,7 +6,7 @@ module.exports.check = function (req) {
     var url = req.url;
     log.info("requst url:", url);
     var urls = url.split("/");
-    var cname = urls.length>0 ? "/"+urls[1] : "/";
+    // var cname = urls.length>0 ? "/"+urls[1] : "/";
     var menu_roles = req.session.menu_roles;
     var exists = false;
     if (url.indexOf('/sidebar') == 0 || url.indexOf('/welcome') == 0 || url.indexOf('/login') == 0 || url == '/' || url == '/401' || url == '/error' || url.indexOf('/verify') == 0) {
@@ -18,7 +18,7 @@ module.exports.check = function (req) {
             if(menu_url == "/") {
                 continue;
             }
-            if (menu_url != "" && cname == menu_url) {
+            if (menu_url != "") {
                 exists = true;
                 break;
             }

@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     res.render('events', {
         user: req.session.user,
         menus: req.session.menus,
-        menu_active: req.session.menu_active['/roles'] || {},
+        menu_active: req.session.menu_active['/events'] || {},
         title: 'Events',
         router: '/events'
     });
@@ -129,7 +129,7 @@ router.get('/home', (req, res, next) => {
     res.render('home', {
         user: req.session.user,
         menus: req.session.menus,
-        menu_active: req.session.menu_active['/roles'] || {},
+        menu_active: req.session.menu_active['/events/home'] || {},
         title: 'Home',
         router: '/events/home'
     });
@@ -156,10 +156,11 @@ router.get('/home/attendance', async(req, res, next) => {
 
 /* My page */
 router.get('/my', (req, res, next) => {
+    console.log("$$$$$$$$$$$$", req.session.menu_active[''])
     res.render('my', {
         user: req.session.user,
         menus: req.session.menus,
-        menu_active: req.session.menu_active['/roles'] || {},
+        menu_active: req.session.menu_active['/events/my'] || {},
         title: 'My Events',
         router: '/events/my'
     });
