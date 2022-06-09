@@ -1,0 +1,21 @@
+{
+  "name": "social web application",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "ejs": "^2.5.7",
+    "express": "~4.13.4",
+    "express-session": "^1.15.4",
+    "lodash": "^4.17.4",
+    "log4js": "^2.3.1",
+    "moment": "^2.18.1",
+    "mysql": "^2.14.0",
+    "serve-favicon": "~2.3.0",
+    "uuid": "^3.2.1"
+  }
+}

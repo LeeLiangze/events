@@ -1,0 +1,13 @@
+{
+  "mysql": {
+    "host": "127.0.0.1",
+    "user": "root",
+    "password": "",
+    "database": "demo",
+    "port": 3306,
+    "connectionLimit": 50,
+    "acquireTimeout": 10000,
+    "charset": "utf8",
+    "db_prefix": ""
+  }
+}

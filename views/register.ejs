@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/css/jquery.datetimepicker.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/css/blue.css">
+    <link rel="stylesheet" href="/css/noty.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="/css/googlefonts.css">
+
+    <!-- The fav icon -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="javascript:void(0);"><b></b>Register</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg"><%= msg %></p>
+        <form id="registerForm" name="registerForm">
+            <div class="form-group has-feedback">
+                <input type="username" id="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" id="name" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" id="password" class="form-control" placeholder="Passsword">
+            </div>
+            <div class="form-group has-feedback">
+                <select name="sex" id="sex" class="form-control">
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+            <div class="form-group has-feedback">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" name="birthday" class="form-control" id="birthday"
+                               placeholder="Birthday" readonly/>
+                    </div>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Telephone Number">
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="button" id="register" class="btn btn-primary btn-block btn-flat">Register</button>
+                </div>
+            </div>
+        </form>
+        <p style="text-align: center">or</p>
+        <div class="row">
+            <div class="col-xs-12">
+                <a type="button" id="login" class="btn btn-primary btn-block btn-flat" href="/login">Login</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+<script src="/javascripts/noty.min.js" type="text/javascript"></script>
+<!-- jQuery 3 -->
+<script src="/javascripts/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/bootstrap-select.min.js"></script>
+<script src="/javascripts/jquery.datetimepicker.full.min.js"></script>
+<script src="/javascripts/md5.js"></script>
+<script>
+    $("#birthday").datetimepicker({
+        timepicker: false,
+        format: "Y-m-d",
+        maxDate: "+1970/01/01"
+    });
+    $(function () {
+        $("#username").focus();
+        function register() {
+            var username = $("#username").val();
+            var name = $('#name').val();
+            var password = $('#password').val();
+            var sex = $('#sex').val();
+            var birthday = $('#birthday').val();
+            var phone = $('#phone').val();
+            var email = $('#email').val();
+            if (username == "" || username.trim() == "") {
+                $(".login-box-msg").text('Username invalid');
+                new Noty({
+                    type: 'error',
+                    layout: 'topCenter',
+                    text: 'Username invalid',
+                    timeout: '2000'
+                }).show();
+            } else if (password == "" || password.trim() == "") {
+                $(".login-box-msg").text('Please enter password');
+                new Noty({
+                    type: 'error',
+                    layout: 'topCenter',
+                    text: 'Please enter password',
+                    timeout: '2000'
+                }).show();
+            } else if (name == "" || name.trim() == "") {
+                $(".login-box-msg").text('Please enter name');
+                new Noty({
+                    type: 'error',
+                    layout: 'topCenter',
+                    text: 'Please enter name',
+                    timeout: '2000'
+                }).show();
+            } else if (sex == "" || sex.trim() == "") {
+                $(".login-box-msg").text('Please enter sex');
+                new Noty({
+                    type: 'error',
+                    layout: 'topCenter',
+                    text: 'Please enter sex',
+                    timeout: '2000'
+                }).show();
+            } else if (birthday == "" || birthday.trim() == "") {
+                $(".login-box-msg").text('Please enter birthday');
+                new Noty({
+                    type: 'error',
+                    layout: 'topCenter',
+                    text: 'Please enter birthday',
+                    timeout: '2000'
+                }).show();
+            } else if (phone == "" || phone.trim() == "") {
+                $(".login-box-msg").text('Please enter phone number');
+                new Noty({
+                    type: 'error',
+                    layout: 'topCenter',
+                    text: 'Please enter phone number',
+                    timeout: '2000'
+                }).show();
+            } else if (email == "" || email.trim() == "") {
+                $(".login-box-msg").text('Please enter email');
+                new Noty({
+                    type: 'error',
+                    layout: 'topCenter',
+                    text: 'Please enter email',
+                    timeout: '2000'
+                }).show();
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/register",
+                    data: {username: username, password: hex_md5(password.trim()), name: name, sex: sex, birthday: birthday, phone:phone, email:email},
+                    asyc: false,
+                    beforeSend:function(){
+                        $(".login-box-msg").html("<img src='/images/loading.gif'>");
+                    },
+                    error: function (error) {
+                        $(".login-box-msg").text('Server error');
+                        new Noty({
+                            type: 'error',
+                            layout: 'topCenter',
+                            text: 'Server error',
+                            timeout: '2000'
+                        }).show();
+                    },
+                    success: function (result) {
+                        if (result.error) {
+                            $(".login-box-msg").text(result.msg || 'Register error   ');
+                            new Noty({
+                                type: 'error',
+                                layout: 'topCenter',
+                                text: result.msg || 'Register error',
+                                timeout: '2000'
+                            }).show();
+                        } else {
+                            window.location.href = "/";
+                        }
+                    }
+                });
+            }
+        }
+        $("#register").click(function () {
+            register();
+        });
+        $(document).keyup(function(event){
+            if(event.keyCode ==13){
+                $("#register").trigger("click");
+            }
+        });
+    });
+</script>
+</body>
+</html>
